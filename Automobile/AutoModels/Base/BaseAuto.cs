@@ -30,7 +30,7 @@ namespace Automobile.AutoModels.Base
         /// Current Liquid Amount of the Auto (l)
         /// Can be changed any time
         /// </summary>
-        public double CurrentLiquidAmount { get; set; }
+        public double CurrentLiquidAmount { get; private set; }
         /// <summary>
         /// Base Constructor of the Base class
         /// </summary>
