@@ -44,6 +44,19 @@ namespace Automobile.AutoModels.Base
             MaxLiquidAmount = CurrentLiquidAmount = liquidAmount;
         }
         /// <summary>
+        /// Adds Liquid to the Current Liquid Amount
+        /// </summary>
+        /// <param name="liquidAmount"></param>
+        /// <returns>How many liquid was added</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public double AddLiquid(double liquidAmount)
+        {
+            if (liquidAmount < 0) throw new ArgumentException("Wrong argument. liquidAmount cant be low then zero.");
+            double lastLiquid = this.CurrentLiquidAmount;
+            this.CurrentLiquidAmount = Math.Min(this.MaxLiquidAmount, lastLiquid + liquidAmount);
+            return this.CurrentLiquidAmount - lastLiquid;
+        }
+        /// <summary>
         /// Calculates the possible distance that can be reached with Maximum Liquid Amount
         /// </summary>
         /// <returns></returns>
