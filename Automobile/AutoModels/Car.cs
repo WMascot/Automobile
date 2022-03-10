@@ -30,6 +30,19 @@ namespace Automobile.AutoModels
             if (maxPassengers < 0 | maxPassengers > 5) throw new ArgumentException("Wrong Amount of Maximum Passengers Allowed.", nameof(maxPassengers));
             MaxPassengers = maxPassengers;
         }
+        /// <summary>
+        /// Adds passengers
+        /// </summary>
+        /// <param name="passengers"></param>
+        /// <returns>How many passengers were added</returns>
+        /// <exception cref="ArgumentException"></exception>
+        public int AddPassengers(int passengers)
+        {
+            if (passengers < 0) throw new ArgumentException("Wrong argument. passengers cant be less then zero", nameof(passengers));
+            int lastPassengers = this.CurrentPassengers;
+            this.CurrentPassengers = Math.Min(this.MaxPassengers, lastPassengers + passengers);
+            return this.CurrentPassengers - lastPassengers;
+        }
         protected override double DistanceReduction(double distance)
         {
             if (distance < 0) throw new ArgumentException("The Distance can't be less then zero.", nameof(distance));
